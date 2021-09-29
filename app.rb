@@ -13,13 +13,14 @@ get '/' do
 end
 
 get '/memos' do
-  @datas = Dir.glob("datas/*").map{|data| File.open(data){|file|JSON.load(file)}}
+  @datas = Dir.glob('datas/*').map { |data| JSON.parse(File.open(data).read) }
+  # @datas = Dir.glob('datas/*').map { |data| File.open(data) { |file| JSON.load(file) } }
   erb :index
 end
 
 post '/memos' do
-  data = { "id" => SecureRandom.uuid , "content" => params[:content] }
-  File.open("datas/#{data["id"]}.json", "w"){|file| JSON.dump(data, file)}
+  data = { 'id' => SecureRandom.uuid, 'content' => params[:content] }
+  File.open("datas/#{data['id']}.json", 'w') { |file| JSON.dump(data, file) }
   redirect to '/memos'
 end
 
@@ -28,15 +29,15 @@ get '/new' do
 end
 
 get '/memos/:id/edit' do
-  data = File.open("datas/#{params[:id]}.json"){|file|JSON.load(file)}
+  data = File.open("datas/#{params[:id]}.json") { |file| JSON.parse(file.read) }
   @id = params[:id]
-  @content = data["content"]
+  @content = data['content']
   erb :edit
 end
 
 patch '/memos/:id' do
-  data = { "id" => params[:id], "content" => params[:content] }
-  File.open("datas/#{params[:id]}.json", "w"){|file| JSON.dump(data, file)}
+  data = { 'id' => params[:id], 'content' => params[:content] }
+  File.open("datas/#{params[:id]}.json", 'w') { |file| JSON.dump(data, file) }
   redirect to '/memos'
 end
 

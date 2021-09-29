@@ -1,10 +1,12 @@
 <h2>メモリスト</h2>
 
-<% @datas.each do |data| %>
- <%= data["content"] %>
-<% end %>
+<ul>
+  <% @datas.each do |data| %>
+    <li>
+      <%= data["content"] %>
+      <button><a href="/memos/<%= "#{data['id']}" %>/edit">編集</a></button>
+    </li>
+  <% end %>
+</ul>
 
-<a href="/new">メモを登録する</a>
-
-
-
+<button><a href="/new">メモを登録する</a></button>

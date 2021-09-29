@@ -1,6 +1,10 @@
 <h2>メモリスト</h2>
+
+<% @datas.each do |data| %>
+ <%= data["content"] %>
+<% end %>
+
 <a href="/new">メモを登録する</a>
 
-<%= @content %>
 
 

@@ -33,3 +33,8 @@ patch '/memos/:id' do
   File.open("datas/#{params[:id]}.json", "w"){|file| JSON.dump(data, file)}
   redirect to '/memos'
 end
+
+delete '/memos/:id' do
+  File.delete("datas/#{params[:id]}.json")
+  redirect to '/memos'
+end

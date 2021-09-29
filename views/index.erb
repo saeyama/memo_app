@@ -1,7 +1,7 @@
 <p><a href="/new">メモを登録する</a></p>
 
 <% @datas.each do |data| %>
-  <%= data["content"] %>
+  <%= h(data["content"]) %>
   <div><button><a href="/memos/<%= "#{data['id']}" %>/edit">編集</a></button></div>
   <form action="/memos/<%= "#{data['id']}" %>" method="post">
       <input type="hidden" name="_method" value="DELETE">

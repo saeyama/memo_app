@@ -7,7 +7,7 @@
 **作成バージョン**  
 ruby：2.7.3　※2系なのでwebrickは入ってません。  
 sinatra：2.1.0  
-DB：未使用　※jsonファイルにてデータを管理。  
+PostgreSQL：13.4  
 
 **使い方**  
 `clone`もしくは`fork`でローカルに落とし、以下を実行すればWEBブラウザ上で使用可能です！  
@@ -27,6 +27,3 @@ memo_app % bundle exec ruby app.rb
 WEBブラウザに http://localhost:4567 を打ち込むとサイトが表示されます。  
 
 ![memo](https://user-images.githubusercontent.com/64824195/135475726-860a81a0-154a-4a65-86c9-0b25a2b1ac74.png)
-
-メモを登録すると、`datas`フォルダに`json`ファイルが作成されます。  
-メモを削除すると、`json`ファイルも削除されます。  

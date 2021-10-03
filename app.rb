@@ -18,12 +18,12 @@ get '/' do
 end
 
 get '/memos' do
-  @datas = db_connection("SELECT * FROM Memo")
+  @datas = db_connection('SELECT * FROM Memo')
   erb :index
 end
 
 post '/memos' do
-  db_connection( "INSERT INTO Memo(content) VALUES ('#{params[:content]}')" )
+  db_connection("INSERT INTO Memo(content) VALUES ('#{params[:content]}')")
   redirect to '/memos'
 end
 
@@ -32,17 +32,17 @@ get '/new' do
 end
 
 get '/memos/:id/edit' do
-  @content = db_connection("SELECT * FROM Memo WHERE id='#{params[:id]}'").map{|row| "#{row["content"]}"}.join
+  @content = db_connection("SELECT * FROM Memo WHERE id='#{params[:id]}'").map { |row| row['content'].to_s }.join
   @id = params[:id]
   erb :edit
 end
 
 patch '/memos/:id' do
-  db_connection( "UPDATE Memo SET content = '#{params[:content]}' WHERE id='#{params[:id]}'")
+  db_connection("UPDATE Memo SET content = '#{params[:content]}' WHERE id='#{params[:id]}'")
   redirect to '/memos'
 end
 
 delete '/memos/:id' do
-  db_connection( "DELETE FROM Memo WHERE id='#{params[:id]}'")
+  db_connection("DELETE FROM Memo WHERE id='#{params[:id]}'")
   redirect to '/memos'
 end

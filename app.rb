@@ -1,10 +1,15 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
+require 'pg'
 
 helpers do
   def h(text)
     Rack::Utils.escape_html(text)
+  end
+
+  def db_connection(table_select)
+    PG.connect(dbname: 'memo_db').exec(table_select)
   end
 end
 
@@ -13,14 +18,12 @@ get '/' do
 end
 
 get '/memos' do
-  @datas = Dir.glob('datas/*').map { |data| JSON.parse(File.open(data).read) }
-  # @datas = Dir.glob('datas/*').map { |data| File.open(data) { |file| JSON.load(file) } }
+  @datas = db_connection("SELECT * FROM Memo")
   erb :index
 end
 
 post '/memos' do
-  data = { 'id' => SecureRandom.uuid, 'content' => params[:content] }
-  File.open("datas/#{data['id']}.json", 'w') { |file| JSON.dump(data, file) }
+  db_connection( "INSERT INTO Memo(content) VALUES ('#{params[:content]}')" )
   redirect to '/memos'
 end
 
@@ -29,19 +32,17 @@ get '/new' do
 end
 
 get '/memos/:id/edit' do
-  data = File.open("datas/#{params[:id]}.json") { |file| JSON.parse(file.read) }
+  @content = db_connection("SELECT * FROM Memo WHERE id='#{params[:id]}'").map{|row| "#{row["content"]}"}.join
   @id = params[:id]
-  @content = data['content']
   erb :edit
 end
 
 patch '/memos/:id' do
-  data = { 'id' => params[:id], 'content' => params[:content] }
-  File.open("datas/#{params[:id]}.json", 'w') { |file| JSON.dump(data, file) }
+  db_connection( "UPDATE Memo SET content = '#{params[:content]}' WHERE id='#{params[:id]}'")
   redirect to '/memos'
 end
 
 delete '/memos/:id' do
-  File.delete("datas/#{params[:id]}.json")
+  db_connection( "DELETE FROM Memo WHERE id='#{params[:id]}'")
   redirect to '/memos'
 end

@@ -1,0 +1,12 @@
+<h2><a href="/new">&rarr;メモを新規に登録する</a></h2>
+
+<% @datas.each do |data| %>
+  <div class="memo_data"> 
+    <div class="memo_content"><%= h(data["content"]) %></div>    
+    <div><button class="link_button"><a href="/memos/<%= "#{data['id']}" %>/edit">編集</a></button></div>  
+    <form action="/memos/<%= "#{data['id']}" %>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value= "削除" class="delete_button">
+    </form>
+  </div> 
+<% end %>

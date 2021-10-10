@@ -4,13 +4,12 @@ require 'json'
 require 'pg'
 require './memo_db'
 
-memo_db = Memo_db.new
+memo_db = Memodb.new
 
 helpers do
   def h(text)
     Rack::Utils.escape_html(text)
   end
-
 end
 
 get '/' do
@@ -35,22 +34,22 @@ get '/memos/:id/edit' do
   @id = params[:id]
   @content = memo_db.row_find_id(@id)[0]['content']
   erb :edit
-rescue
+rescue PG::InvalidTextRepresentation, IndexError
   redirect to 'not_found'
 end
 
 patch '/memos/:id' do
   memo_db.row_update(params[:content], params[:id])
   redirect to '/memos'
-  rescue
-    redirect to 'not_found'
+rescue PG::InvalidTextRepresentation, IndexError
+  redirect to 'not_found'
 end
 
 delete '/memos/:id' do
   memo_db.row_delete(params[:id])
   redirect to '/memos'
-  rescue
-    redirect to 'not_found'
+rescue PG::InvalidTextRepresentation, IndexError
+  redirect to 'not_found'
 end
 
 not_found do

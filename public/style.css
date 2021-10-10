@@ -19,23 +19,33 @@ h1 {
   font-size: 60px;
 }
 
-h2 {
-  font-weight: normal;
-  margin: 20px 0 30px;
-}
-
-h2:hover{
-  transform: translate(5px, 0);
-}
-
 h2 a{
   text-decoration: none;
   color: #444;
+}
+
+h2.new {
+  font-weight: normal;
+  margin: 20px 0 30px;
   font-size: 26px;
 }
 
-h2 a:hover{
+h2.new:hover{
+  transform: translate(5px, 0);
+}
+
+h2.new a:hover{
   color: #ffb499;
+}
+
+h2.not_found{
+  font-size: 70px;
+  text-align: center;
+}
+
+h2.not_found:hover{
+  transform: translate(10px, 0);
+  opacity: 0.7;
 }
 
 .memo_data{

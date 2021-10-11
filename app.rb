@@ -31,23 +31,30 @@ get '/new' do
 end
 
 get '/memos/:id/edit' do
-  @id = params[:id]
+  # @id = params[:id]
   @content = memo_db.row_find_id(params[:id])[0]
-    erb :edit
-  rescue PG::InvalidTextRepresentation, IndexError
-    redirect to 'not_found'
+  #   erb :edit
+  # rescue PG::InvalidTextRepresentation, IndexError
+  #   redirect to 'not_found'
 
-  #試した方法１　登録なしの数字・文字ともにエラー
-  # if @content['content'].nil? || @content['content'].empty?
+  # 試した方法１　登録なしの数字・文字ともにエラー
+  # if @content.nil? || @content.empty?
   #   redirect to 'not_found'
   # else
   #   erb :edit
   # end
 
   #試した方法2　登録なしの数字・文字ともにエラー
+  # if @content['content'].nil? || @content['content'].empty?
+  #   redirect to 'not_found'
+  # else
+  #   erb :edit
+  # end
+
+  #試した方法3　登録なしの数字・文字ともにエラー
   # @content ? (erb :edit) : (redirect to 'not_found')
 
-  #試した方法3 登録なしの数字だとnot_foundページに飛ぶが、文字はエラー
+  #試した方法4 登録なしの数字だとnot_foundページに飛ぶが、文字はエラー
   # @id = params[:id]
   # @content = memo_db.row_find_id(params[:id]).find { |x| x['id'].include?(@id) }
   # if @content

@@ -1,5 +1,5 @@
-<!-- 試した方法1,2はaction="/memos/<%= "#{@content['id']}" %> 
-     試した方法3はaction="/memos/<%= "#{@id}" %> -->
+<!-- 試した方法1,2,3はaction="/memos/<%= "#{@content['id']}" %> 
+     試した方法4はaction="/memos/<%= "#{@id}" %> -->
 
 <form action="/memos/<%= "#{@content['id']}" %>" method="POST" class="edit_form">
   <textarea name="content" rows="5"><%= h(@content['content']) %></textarea><br>

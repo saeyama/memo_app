@@ -17,7 +17,7 @@ class Memodb
   end
 
   def row_find_id(id)
-    table_process('SELECT content FROM Memo WHERE id=$1', id)
+    table_process('SELECT * FROM Memo WHERE id=$1', id)
   end
 
   def row_update(content, id)

@@ -1,6 +1,3 @@
-<!-- 試した方法1,2,3はaction="/memos/<%= "#{@content['id']}" %> 
-     試した方法4はaction="/memos/<%= "#{@id}" %> -->
-
 <form action="/memos/<%= "#{@content['id']}" %>" method="POST" class="edit_form">
   <textarea name="content" rows="5"><%= h(@content['content']) %></textarea><br>
   <input type="hidden" name="_method" value="PATCH">

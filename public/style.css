@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+body,
+div,
+h1,
+h2,
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+  width: 1000px;
+  margin: 0 auto;
+  color: #444;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 a{
+  text-decoration: none;
+  color: #444;
+}
+
+h2.new {
+  font-weight: normal;
+  margin: 20px 0 30px;
+  font-size: 26px;
+}
+
+h2.new:hover{
+  transform: translate(5px, 0);
+}
+
+h2.new a:hover{
+  color: #ffb499;
+}
+
+h2.not_found{
+  font-size: 70px;
+  text-align: center;
+}
+
+h2.not_found:hover{
+  transform: translate(10px, 0);
+  opacity: 0.7;
+}
+
+.memo_data{
+  width: 800px;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  margin: 20px auto 0;
+}
+
+.memo_content{
+  font-size: 30px;
+  width: 400px;
+}
+
+.link_button, 
+.delete_button,
+.input_button{
+  background: #fff;
+  border-radius: 5px;
+}
+
+.link_button,
+.input_button{
+  border: 2px solid #ffb499;
+}
+
+.delete_button{
+  border: 2px solid #808080;
+  color: #808080;
+}
+
+.link_button a, 
+.delete_button,
+.input_button{
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.link_button a,
+.input_button{
+  color: #ffb499;
+}
+
+.link_button:hover, 
+.delete_button:hover,
+.input_button:hover{
+  opacity: 0.7;
+}
+
+.input_button{
+  margin: 10px 0 0 752px;
+}
+
+.input_form{
+  width: 800px;
+  margin: 0 auto;
+  font-size: 30px;
+}
+
+textarea{
+  width: 800px;
+  height: 300px;
+  border: 2px solid #c4c4c4;
+  border-radius: 5px;
+  font-size: 26px;
+}
